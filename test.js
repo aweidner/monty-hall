@@ -15,7 +15,7 @@ QUnit.test("5k switch yields a P(Win) of around .66", function( assert ) {
     initialize(3);
     for (var i = 0; i < 5000; i++) {
         pickDoor("door" + getRandomInt(0, 3));
-        switchDoor();
+        switchDoor(game);
     }
     var pWin = Math.abs(game.switched.won / 5000)
     assert.ok((pWin - .66) < .02, "p(win) was actually " + pWin);

@@ -75,7 +75,7 @@ function revealGoat() {
     document.getElementById("door" + game.revealed).classList.add("goat");
 }
 
-function switchDoor() {
+function switchDoor(game) {
     game.selected = [0, 1, 2].filter(index => index !== game.revealed && index !== game.selected)[0];
 
     if (game.doors[game.selected].contains === "car") {
