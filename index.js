@@ -1,7 +1,7 @@
 var DOORS = 3;
 var game = {}
 
-initialize(DOORS);
+game = initialize(DOORS);
 
 function initialize(numDoors) {
     game = {
@@ -52,7 +52,7 @@ function getRandomInt(min, max) {
 }
 
 function determineContents(game) {
-    var carIndex = getRandomInt(0, DOORS);
+    var carIndex = getRandomInt(0, game.doors.length);
     var goatIndexes = [0, 1, 2];
     goatIndexes.splice(carIndex, 1);
 
