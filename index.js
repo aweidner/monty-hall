@@ -1,21 +1,24 @@
-var game = {
-    doors: [{
-        contains: null
-    }, {
-        contains: null
-    }, {
-        contains: null
-    }],
-    switched: {
-        won: 0,
-        lost: 0,
-    },
-    stayed: {
-        won: 0,
-        lost: 0
-    },
-    selected: null,
-    revealed: null
+var game = {}
+
+initialize(3);
+
+function initialize(numDoors) {
+    game = {
+        doors: [],
+        switched: {
+            won: 0,
+            lost: 0,
+        },
+        stayed: {
+            won: 0,
+            lost: 0
+        },
+        selected: null,
+        revealed: null
+    }
+    for (var i = 0; i < numDoors; i++) {
+        game.doors.push({ contains: null })     
+    }
 }
 
 function play1kSwitch() {
