@@ -68,8 +68,8 @@
         </div>
 
         <div id="switch-stay" class="hidden">
-            <button id = "switch-button" onclick="switchDoor(game)">Switch</button>
-            <button id = "stay-button" onclick="stay(game)">Stay</button>
+            <button id = "switch-button" onclick="revealDoor(game, switchDoor, 'switched')">Switch</button>
+            <button id = "stay-button" onclick="revealDoor(game, stay, 'stayed')">Stay</button>
         </div>
         <script src = "index.js"></script>
     </body>

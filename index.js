@@ -75,7 +75,7 @@ function revealGoat() {
     document.getElementById("door" + game.revealed).classList.add("goat");
 }
 
-function actuallySwitch(game) {
+function switchDoor(game) {
     var possible = Array.from(game.doors.keys()).filter(index => {
         return (index !== game.revealed &&
                 index !== game.selected)
@@ -83,27 +83,14 @@ function actuallySwitch(game) {
     game.selected = possible[getRandomInt(0, possible.length)];
 }
 
-function doNothing() {}
+function stay() {}
 
-function switchDoor(game) {
-    actuallySwitch(game);
-    var field = "switched";
+function revealDoor(game, switchingStrategy, incrementField) {
+    switchingStrategy(game)
     if (game.doors[game.selected].contains === "car") {
-        game[field].won += 1;
+        game[incrementField].won += 1;
     } else {
-        game[field].lost += 1;
-    }
-    updateScore(game);
-    resetAll();
-}
-
-function stay(game) {
-    doNothing(game);    
-    var field = "stayed";
-    if (game.doors[game.selected].contains === "car") {
-        game[field].won += 1;
-    } else {
-        game[field].lost += 1;
+        game[incrementField].lost += 1;
     }
     updateScore(game);
     resetAll();

@@ -5,7 +5,7 @@ QUnit.test("5k stay yields a P(Win) of around .33", function( assert ) {
     initialize(3);
     for (var i = 0; i < 5000; i++) {
         pickDoor("door" + getRandomInt(0, 3));
-        stay(game);
+        revealDoor(game, stay, "stayed");
     }
     var pWin = Math.abs(game.stayed.won / 5000)
     assert.ok((pWin - .33) < .03, "p(win) was actually " + pWin)
@@ -15,7 +15,7 @@ QUnit.test("5k switch yields a P(Win) of around .66", function( assert ) {
     initialize(3);
     for (var i = 0; i < 5000; i++) {
         pickDoor("door" + getRandomInt(0, 3));
-        switchDoor(game);
+        revealDoor(game, switchDoor, "switched");
     }
     var pWin = Math.abs(game.switched.won / 5000)
     assert.ok((pWin - .66) < .03, "p(win) was actually " + pWin);
@@ -84,7 +84,7 @@ QUnit.test("Will switch to something other than selected", function(assert) {
         switched: { won: 0, lost: 0},
         stayed: { won: 0, lost: 0}
     }
-    switchDoor(game);
+    revealDoor(game, switchDoor, "switched");
     assert.equal(game.selected, 1, game.selected + " was actually selected");
 })
 
@@ -100,7 +100,7 @@ QUnit.test("Will update switched won if the car was won", function(assert) {
         switched: { won: 0, lost: 0},
         stayed: { won: 0, lost: 0}
     }
-    switchDoor(game);
+    revealDoor(game, switchDoor, "switched");
     assert.equal(game.switched.won, 1);
 })
 
@@ -116,7 +116,7 @@ QUnit.test("Will update switched lost if the car was lost", function(assert) {
         switched: { won: 0, lost: 0},
         stayed: { won: 0, lost: 0}
     }
-    switchDoor(game);
+    revealDoor(game, switchDoor, "switched");
     assert.equal(game.switched.lost, 1);
 })
 
@@ -134,6 +134,6 @@ QUnit.test("Will switch to something other than selected when there are more tha
         switched: { won: 0, lost: 0},
         stayed: { won: 0, lost: 0}
     }
-    switchDoor(game);
+    revealDoor(game, switchDoor, "switched");
     assert.ok(game.selected != 2, game.selected + " was actually selected");
 })
