@@ -1,6 +1,7 @@
+var DOORS = 3;
 var game = {}
 
-initialize(3);
+initialize(DOORS);
 
 function initialize(numDoors) {
     game = {
@@ -23,14 +24,14 @@ function initialize(numDoors) {
 
 function play1kSwitch() {
     for (var i = 0; i < 1000; i++) {
-        document.getElementById("door" + getRandomInt(0, 3) + "button").click()
+        document.getElementById("door" + getRandomInt(0, DOORS) + "button").click()
         document.getElementById("switch-button").click()
     }
 }
 
 function play1kStay() {
     for (var i = 0; i < 1000; i++) {
-        document.getElementById("door" + getRandomInt(0, 3) + "button").click()
+        document.getElementById("door" + getRandomInt(0, DOORS) + "button").click()
         document.getElementById("stay-button").click()
     }
 }
@@ -51,7 +52,7 @@ function getRandomInt(min, max) {
 }
 
 function determineContents() {
-    var carIndex = getRandomInt(0, 3);
+    var carIndex = getRandomInt(0, DOORS);
     var goatIndexes = [0, 1, 2];
     goatIndexes.splice(carIndex, 1);
 
