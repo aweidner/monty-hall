@@ -119,3 +119,21 @@ QUnit.test("Will update switched lost if the car was lost", function(assert) {
     switchDoor(game);
     assert.equal(game.switched.lost, 1);
 })
+
+QUnit.test("Will switch to something other than selected when there are more than 3 doors", function(assert) {
+    var game = {
+        doors: [
+            {contains: "goat"},
+            {contains: "goat"},
+            {contains: "car"},
+            {contains: "goat"},
+            {contains: "goat"}
+        ],
+        selected: 2,
+        revealed: 0,
+        switched: { won: 0, lost: 0},
+        stayed: { won: 0, lost: 0}
+    }
+    switchDoor(game);
+    assert.ok(game.selected != 2, game.selected + " was actually selected");
+})

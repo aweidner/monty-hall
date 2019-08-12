@@ -76,7 +76,11 @@ function revealGoat() {
 }
 
 function switchDoor(game) {
-    game.selected = [0, 1, 2].filter(index => index !== game.revealed && index !== game.selected)[0];
+    var possible = Array.from(game.doors.keys()).filter(index => {
+        return (index !== game.revealed &&
+                index !== game.selected)
+    });
+    game.selected = possible[getRandomInt(0, possible.length)];
 
     if (game.doors[game.selected].contains === "car") {
         game.switched.won += 1;
