@@ -38,7 +38,7 @@ function play1kStay() {
 
 function pickDoor(doorId) {
     game.selected = parseInt(doorId.replace("door", ""));
-    determineContents();
+    determineContents(game);
     revealGoat();
 
     document.getElementById("choose-door").classList.add("hidden");
@@ -51,7 +51,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-function determineContents() {
+function determineContents(game) {
     var carIndex = getRandomInt(0, DOORS);
     var goatIndexes = [0, 1, 2];
     goatIndexes.splice(carIndex, 1);
