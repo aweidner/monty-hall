@@ -52,3 +52,20 @@ QUnit.test("Will select two goats when there are three doors", function( assert)
     }
     assert.equal(goatCount, 2, goatCount + " goats actually found");
 })
+
+QUnit.test("Will select n-1 goats when there are n doors", function(assert) {
+    var game = { doors: [
+        {contains: null},
+        {contains: null},
+        {contains: null},
+        {contains: null},
+        {contains: null}
+    ] }
+    determineContents(game);
+
+    var goatCount = 0;
+    for (var i = 0; i < game.doors.length; i++) {
+        goatCount += game.doors[i].contains === "goat" ? 1 : 0;
+    }
+    assert.equal(goatCount, 4, goatCount + " goats actually found");
+})

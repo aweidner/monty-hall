@@ -1,7 +1,6 @@
 var DOORS = 3;
 var game = {}
-
-game = initialize(DOORS);
+initialize(DOORS);
 
 function initialize(numDoors) {
     game = {
@@ -52,13 +51,16 @@ function getRandomInt(min, max) {
 }
 
 function determineContents(game) {
-    var carIndex = getRandomInt(0, game.doors.length);
-    var goatIndexes = [0, 1, 2];
+    var doors = game.doors.length;
+    var carIndex = getRandomInt(0, doors);
+    var goatIndexes = Array.from(Array(doors).keys());
+
     goatIndexes.splice(carIndex, 1);
 
     game.doors[carIndex].contains = "car";
-    game.doors[goatIndexes[0]].contains = "goat";
-    game.doors[goatIndexes[1]].contains = "goat";
+    for (var i = 0; i < goatIndexes.length; i++) {
+        game.doors[goatIndexes[i]].contains = "goat";
+    }
 }
 
 function revealGoat() {
