@@ -75,13 +75,18 @@ function revealGoat() {
     document.getElementById("door" + game.revealed).classList.add("goat");
 }
 
-function switchDoor(game) {
+function actuallySwitch(game) {
     var possible = Array.from(game.doors.keys()).filter(index => {
         return (index !== game.revealed &&
                 index !== game.selected)
     });
     game.selected = possible[getRandomInt(0, possible.length)];
+}
 
+function doNothing() {}
+
+function switchDoor(game) {
+    actuallySwitch(game);
     if (game.doors[game.selected].contains === "car") {
         game.switched.won += 1;
     } else {
@@ -92,6 +97,7 @@ function switchDoor(game) {
 }
 
 function stay(game) {
+    doNothing(game);    
     if (game.doors[game.selected].contains === "car") {
         game.stayed.won += 1;
     } else {

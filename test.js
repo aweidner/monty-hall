@@ -8,7 +8,7 @@ QUnit.test("5k stay yields a P(Win) of around .33", function( assert ) {
         stay(game);
     }
     var pWin = Math.abs(game.stayed.won / 5000)
-    assert.ok((pWin - .33) < .02, "p(win) was actually " + pWin)
+    assert.ok((pWin - .33) < .03, "p(win) was actually " + pWin)
 });
 
 QUnit.test("5k switch yields a P(Win) of around .66", function( assert ) {
@@ -18,7 +18,7 @@ QUnit.test("5k switch yields a P(Win) of around .66", function( assert ) {
         switchDoor(game);
     }
     var pWin = Math.abs(game.switched.won / 5000)
-    assert.ok((pWin - .66) < .02, "p(win) was actually " + pWin);
+    assert.ok((pWin - .66) < .03, "p(win) was actually " + pWin);
 });
 
 QUnit.module("determineContents")
