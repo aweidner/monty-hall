@@ -83,7 +83,7 @@ function switchDoor(game) {
     } else {
         game.switched.lost += 1;
     }
-    updateScore();
+    updateScore(game);
     resetAll();
 }
 
@@ -93,11 +93,11 @@ function stay() {
     } else {
         game.stayed.lost += 1;
     }
-    updateScore();
+    updateScore(game);
     resetAll();
 }
 
-function updateScore() {
+function updateScore(game) {
     document.getElementById("switched-won").innerHTML = game.switched.won
     document.getElementById("switched-lost").innerHTML = game.switched.lost
     document.getElementById("stayed-won").innerHTML = game.stayed.won
