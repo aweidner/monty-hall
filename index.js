@@ -91,7 +91,7 @@ function switchDoor(game) {
     resetAll();
 }
 
-function stay() {
+function stay(game) {
     if (game.doors[game.selected].contains === "car") {
         game.stayed.won += 1;
     } else {

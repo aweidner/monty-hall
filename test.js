@@ -5,7 +5,7 @@ QUnit.test("5k stay yields a P(Win) of around .33", function( assert ) {
     initialize(3);
     for (var i = 0; i < 5000; i++) {
         pickDoor("door" + getRandomInt(0, 3));
-        stay();
+        stay(game);
     }
     var pWin = Math.abs(game.stayed.won / 5000)
     assert.ok((pWin - .33) < .02, "p(win) was actually " + pWin)
