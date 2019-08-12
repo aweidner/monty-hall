@@ -87,10 +87,11 @@ function doNothing() {}
 
 function switchDoor(game) {
     actuallySwitch(game);
+    var field = "switched";
     if (game.doors[game.selected].contains === "car") {
-        game.switched.won += 1;
+        game[field].won += 1;
     } else {
-        game.switched.lost += 1;
+        game[field].lost += 1;
     }
     updateScore(game);
     resetAll();
@@ -98,10 +99,11 @@ function switchDoor(game) {
 
 function stay(game) {
     doNothing(game);    
+    var field = "stayed";
     if (game.doors[game.selected].contains === "car") {
-        game.stayed.won += 1;
+        game[field].won += 1;
     } else {
-        game.stayed.lost += 1;
+        game[field].lost += 1;
     }
     updateScore(game);
     resetAll();
