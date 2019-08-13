@@ -1,6 +1,5 @@
 var DOORS = 3;
 var game = {}
-initialize(DOORS);
 
 function initialize(numDoors) {
     game = {
@@ -18,11 +17,20 @@ function initialize(numDoors) {
     }
     for (var i = 0; i < numDoors; i++) {
         game.doors.push({ contains: null })     
+        byId("doors").appendChild(createDoor(i));
     }
 }
 
 function byId(elementId) {
     return document.getElementById(elementId);
+}
+
+function createDoor(index) {
+    var door = document.createElement("div");
+    door.classList.add("door")
+    door.classList.add("unknown");
+    door.setAttribute("id", "door" + index);
+    return door;
 }
 
 function play1kSwitch() {

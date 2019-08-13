@@ -1,3 +1,13 @@
+class Element {
+    constructor() {
+        this.elements = [];
+        this.classList = new ClassList();
+    }
+    appendChild(element) {
+        this.elements.push(element);
+    }
+}
+
 class ClassList {
     constructor() {
         this._l = [];
@@ -14,9 +24,7 @@ class ClassList {
 var _elementCache = {}
 byId = function(elementId) {
     if (!_elementCache[elementId]) {
-        _elementCache[elementId] = Object.create({
-            classList: new ClassList()
-        });
+        _elementCache[elementId] = new Element();
     }
     return _elementCache[elementId];
 }
@@ -187,4 +195,11 @@ QUnit.test("resetAll will reset with many doors", function(assert) {
     assert.deepEqual(byId("door2").classList.values(), ["unknown"])
     assert.deepEqual(byId("door3").classList.values(), ["unknown"])
     assert.deepEqual(byId("door4").classList.values(), ["unknown"])
+})
+
+QUnit.test("Initialize will generate elements for doors", function(assert) {
+    initialize(5);
+    var classList = byId("doors").elements[4].classList;
+    assert.ok(classList.contains("door"))
+    assert.ok(classList.contains("unknown"));
 })
