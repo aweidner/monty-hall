@@ -21,17 +21,21 @@ function initialize(numDoors) {
     }
 }
 
+function byId(elementId) {
+    return document.getElementById(elementId);
+}
+
 function play1kSwitch() {
     for (var i = 0; i < 1000; i++) {
-        document.getElementById("door" + getRandomInt(0, DOORS) + "button").click()
-        document.getElementById("switch-button").click()
+        byId("door" + getRandomInt(0, DOORS) + "button").click()
+        byId("switch-button").click()
     }
 }
 
 function play1kStay() {
     for (var i = 0; i < 1000; i++) {
-        document.getElementById("door" + getRandomInt(0, DOORS) + "button").click()
-        document.getElementById("stay-button").click()
+        byId("door" + getRandomInt(0, DOORS) + "button").click()
+        byId("stay-button").click()
     }
 }
 
@@ -40,8 +44,8 @@ function pickDoor(doorId) {
     determineContents(game);
     revealGoat();
 
-    document.getElementById("choose-door").classList.add("hidden");
-    document.getElementById("switch-stay").classList.remove("hidden");
+    byId("choose-door").classList.add("hidden");
+    byId("switch-stay").classList.remove("hidden");
 }
 
 function getRandomInt(min, max) {
@@ -72,7 +76,7 @@ function revealGoat() {
     }
 
     game.revealed = goatIndexes.filter(goatIndex => goatIndex !== game.selected)[0];
-    document.getElementById("door" + game.revealed).classList.add("goat");
+    byId("door" + game.revealed).classList.add("goat");
 }
 
 function switchDoor(game) {
@@ -97,25 +101,25 @@ function revealDoor(game, switchingStrategy, incrementField) {
 }
 
 function updateScore(game) {
-    document.getElementById("switched-won").innerHTML = game.switched.won
-    document.getElementById("switched-lost").innerHTML = game.switched.lost
-    document.getElementById("stayed-won").innerHTML = game.stayed.won
-    document.getElementById("stayed-lost").innerHTML = game.stayed.lost
+    byId("switched-won").innerHTML = game.switched.won
+    byId("switched-lost").innerHTML = game.switched.lost
+    byId("stayed-won").innerHTML = game.stayed.won
+    byId("stayed-lost").innerHTML = game.stayed.lost
 
-    document.getElementById("probability-winning-stayed").innerHTML = game.stayed.won / (game.stayed.won + game.stayed.lost)
-    document.getElementById("probability-winning-switched").innerHTML = game.switched.won / (game.switched.won + game.switched.lost)
+    byId("probability-winning-stayed").innerHTML = game.stayed.won / (game.stayed.won + game.stayed.lost)
+    byId("probability-winning-switched").innerHTML = game.switched.won / (game.switched.won + game.switched.lost)
 }
 
 function resetAll() {
     reset("door0");
     reset("door1");
     reset("door2");
-    document.getElementById("switch-stay").classList.add("hidden");
-    document.getElementById("choose-door").classList.remove("hidden");
+    byId("switch-stay").classList.add("hidden");
+    byId("choose-door").classList.remove("hidden");
 }
 
 function reset(doorId) {
-    var door = document.getElementById(doorId);
+    var door = byId(doorId);
     door.classList.remove("goat");
     door.classList.add("unknown");
 }
