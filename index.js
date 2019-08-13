@@ -97,7 +97,7 @@ function revealDoor(game, switchingStrategy, incrementField) {
         game[incrementField].lost += 1;
     }
     updateScore(game);
-    resetAll();
+    resetAll(game);
 }
 
 function updateScore(game) {
@@ -110,10 +110,10 @@ function updateScore(game) {
     byId("probability-winning-switched").innerHTML = game.switched.won / (game.switched.won + game.switched.lost)
 }
 
-function resetAll() {
-    reset("door0");
-    reset("door1");
-    reset("door2");
+function resetAll(game) {
+    for (var i = 0; i < game.doors.length; i++) {
+        reset("door" + i);
+    }
     byId("switch-stay").classList.add("hidden");
     byId("choose-door").classList.remove("hidden");
 }

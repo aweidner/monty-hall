@@ -167,8 +167,24 @@ QUnit.test("Will switch to something other than selected when there are more tha
 QUnit.module("UI tests");
 
 QUnit.test("resetAll will reset 3 doors", function(assert) {
-    resetAll();
+    resetAll(game);
     assert.deepEqual(byId("door0").classList.values(), ["unknown"])
     assert.deepEqual(byId("door1").classList.values(), ["unknown"])
     assert.deepEqual(byId("door2").classList.values(), ["unknown"])
+})
+
+QUnit.test("resetAll will reset with many doors", function(assert) {
+    var game = { doors: [
+        {contains: null},
+        {contains: null},
+        {contains: null},
+        {contains: null},
+        {contains: null}
+    ] }
+    resetAll(game);
+    assert.deepEqual(byId("door0").classList.values(), ["unknown"])
+    assert.deepEqual(byId("door1").classList.values(), ["unknown"])
+    assert.deepEqual(byId("door2").classList.values(), ["unknown"])
+    assert.deepEqual(byId("door3").classList.values(), ["unknown"])
+    assert.deepEqual(byId("door4").classList.values(), ["unknown"])
 })
