@@ -1,3 +1,29 @@
+class ClassList {
+    constructor() {
+        this._l = [];
+    }
+    add(className) {
+        this._l.push(className)
+    }
+    remove(className) {
+        this._l = this._l.filter(item => item !== className);
+    }
+    values() { return this._l }
+}
+
+var _elementCache = {}
+byId = function(elementId) {
+    if (!_elementCache[elementId]) {
+        _elementCache[elementId] = Object.create({
+            classList: new ClassList()
+        });
+    }
+    return _elementCache[elementId];
+}
+
+QUnit.testStart(function() {
+    _elementCache = {};
+});
 
 QUnit.module("Characterization tests")
 
