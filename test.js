@@ -163,3 +163,12 @@ QUnit.test("Will switch to something other than selected when there are more tha
     revealDoor(game, switchDoor, "switched");
     assert.ok(game.selected != 2, game.selected + " was actually selected");
 })
+
+QUnit.module("UI tests");
+
+QUnit.test("resetAll will reset 3 doors", function(assert) {
+    resetAll();
+    assert.deepEqual(byId("door0").classList.values(), ["unknown"])
+    assert.deepEqual(byId("door1").classList.values(), ["unknown"])
+    assert.deepEqual(byId("door2").classList.values(), ["unknown"])
+})
