@@ -1,4 +1,3 @@
-var DOORS = 3;
 var game = {}
 
 function initialize(numDoors) {
@@ -21,28 +20,43 @@ function initialize(numDoors) {
     }
 }
 
+function resetInitialization() {
+    var numberOfDoors = parseInt(byId("doorNumber").value)
+    if (numberOfDoors < 3) { 
+        return;
+    }
+
+    var doors = byId("doors");
+    while(doors.firstChild && doors.removeChild(doors.firstChild));
+    initialize(numberOfDoors);
+    updateScore(game);
+    resetAll(game);
+}
+
 function byId(elementId) {
     return document.getElementById(elementId);
 }
 
 function createDoor(index) {
     var door = document.createElement("div");
+    var id = "door" + index;
     door.classList.add("door")
     door.classList.add("unknown");
-    door.setAttribute("id", "door" + index);
+    door.setAttribute("id", id);
+    door.onclick = pickDoor.bind(null, id);
     return door;
 }
 
 function play1kSwitch() {
     for (var i = 0; i < 1000; i++) {
-        byId("door" + getRandomInt(0, DOORS) + "button").click()
+        pickDoor("door" + getRandomInt(0, game.doors.length));
         byId("switch-button").click()
     }
 }
 
 function play1kStay() {
     for (var i = 0; i < 1000; i++) {
-        byId("door" + getRandomInt(0, DOORS) + "button").click()
+        pickDoor("door" + getRandomInt(0, game.doors.length));
         byId("stay-button").click()
     }
 }
@@ -52,7 +66,6 @@ function pickDoor(doorId) {
     determineContents(game);
     revealGoat();
 
-    byId("choose-door").classList.add("hidden");
     byId("switch-stay").classList.remove("hidden");
 }
 
@@ -123,7 +136,6 @@ function resetAll(game) {
         reset("door" + i);
     }
     byId("switch-stay").classList.add("hidden");
-    byId("choose-door").classList.remove("hidden");
 }
 
 function reset(doorId) {

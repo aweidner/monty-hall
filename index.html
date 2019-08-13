@@ -2,17 +2,20 @@
 <html>
     <title>Monty Hall Simuation</title>
     <style>
+        .door {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
         body {
             padding: 20px;
         }
         .hidden {
             visibility: hidden;
         }
-        .door {
-            width: 200px;
-            height: 200px;
-            margin: 20px;
-            float: left;
+        .row {
+            margin-bottom: 20px;
         }
         .clearleft {
             clear: left;
@@ -26,7 +29,12 @@
     </style>    
     <body>
         <a href = "https://en.wikipedia.org/wiki/Monty_Hall_problem">Link to the problem description</a><br><br>
-        <div style = "margin-bottom: 20px">
+        <div class = "row">
+          <label>Initial number of doors:</label>
+          <input id = "doorNumber" type = "number" value = "3"/>
+          <button onclick = "resetInitialization()">Initialize</button>
+        </div>
+        <div class = "row">
           <button onclick="play1kSwitch()">Play 1000 Switching</button>
           <button onclick="play1kStay()">Play 1000 Staying</button>
         </div>
@@ -53,16 +61,10 @@
             </tr>
         </table>
 
-        <div id = "doors">
+        <div id = "doors" style = "display: flex; flex-wrap: nowrap; overflow-x: auto;">
         </div>
 
         <div class = "clearleft"></div>
-
-        <div id = "choose-door">
-            <button id = "door0button" onclick="pickDoor('door0')">Door 1</button>
-            <button id = "door1button" onclick="pickDoor('door1')">Door 2</button>
-            <button id = "door2button" onclick="pickDoor('door2')">Door 3</button>
-        </div>
 
         <div id="switch-stay" class="hidden">
             <button id = "switch-button" onclick="revealDoor(game, switchDoor, 'switched')">Switch</button>
@@ -70,7 +72,7 @@
         </div>
         <script src = "index.js"></script>
         <script type = "text/javascript">
-          initialize(DOORS);
+          resetInitialization();
         </script>
     </body>
 </html>
